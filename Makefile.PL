@@ -17,6 +17,7 @@ WriteMakefile(
     'List::Util'         =>  0,
     'Storable'           =>  0,
     'Graph::SomeUtils'   =>  0,
+    'Algorithm::ConstructDFA::XS' => 0,
   },
   ABSTRACT_FROM     => 'lib/Grammar/Graph/Simplify.pm',
   AUTHOR            => 'Bjoern Hoehrmann <bjoern@hoehrmann.de>',

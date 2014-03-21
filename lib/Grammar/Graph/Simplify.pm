@@ -7,6 +7,7 @@ use strict;
 use warnings;
 use Grammar::Graph;
 use Grammar::Formal;
+use Algorithm::ConstructDFA::XS 0.13;
 use List::UtilsBy qw/partition_by/;
 use List::MoreUtils qw/uniq/;
 use List::Util qw/shuffle sum max/;
@@ -15,7 +16,7 @@ use Graph::SomeUtils qw/:all/;
 
 local $Storable::canonical = 1;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 our %EXPORT_TAGS = ( 'all' => [ qw(
 	
@@ -62,7 +63,7 @@ sub Grammar::Graph::fa_merge_equivalent_vertices {
   my $get_classes = sub {
     my ($start_vertex, $final_vertex, $sub) = @_;
 
-    my $dfa = construct_dfa_xs(
+    my $dfa = Algorithm::ConstructDFA::XS::construct_dfa_xs(
       start        => [ $start_vertex ],
       is_accepting => sub { grep { $_ eq $final_vertex } @_ },
       is_nullable  => sub {
